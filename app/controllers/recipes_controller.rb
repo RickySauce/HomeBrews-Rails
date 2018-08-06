@@ -6,7 +6,22 @@ class RecipesController < ApplicationController
   end
 
   def create
+    @recipe = Recipe.new(recipe_params)
+    @recipe.get_recipe_ingredients(params["recipe"]["recipe_ingredients_attributes"])
     binding.pry
+  end
+
+  def show
+    binding.pry
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def delete
   end
 
   private
@@ -14,6 +29,7 @@ class RecipesController < ApplicationController
   def recipe_params
       params.require(:recipe).permit(
         :name,
+        :sub_style_id,
         :batch_size,
         :boil_size,
         :og,
@@ -22,7 +38,7 @@ class RecipesController < ApplicationController
         :ibu,
         :user_id,
         :description,
-        :recipe_ingredients_attributes
+        :recipe_ingredients_attributes,
       )
     end
 

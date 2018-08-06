@@ -5,11 +5,15 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
   accepts_nested_attributes_for :recipe_ingredients
   validates :name, presence: true, uniqueness: true
-  validates :sub_style_id, :boil_size, :batch_size, :og, :fg, :abv, :ibu, :user_id, presence: true
-  # after_initialize :give_water
-  # accepts_nested_attributes_for :recipe_ingredients
+  validates :boil_size, :batch_size, :og, :fg, :abv, :ibu, :user_id, presence: true
 
-  def give_water
-    self.ingredients << Ingredient.get_water
+  def get_recipe_ingredients(ingredients_hash)
+    ingredients_hash.values.each do |ingredient_attribute|
+      recipe_ingredient = RecipeIngredient.new(ingredient_attribute)
+      recipe_ingredient.recipe_id = self.id
+      recipe_ingredient.save
+      self.recipe_ingredients << recipe_ingredient if recipe_ingredient.save
+    end
   end
+
 end

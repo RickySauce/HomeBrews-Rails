@@ -5,11 +5,15 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
   resources :users
   resources :users, only: [:show] do
-    resources :recipes, only: [:show, :index, :edit, :delete, :new, :create]
+    resources :recipes, only: [:show, :index, :edit, :delete, :new, :create, :update]
   end
   resources :recipes, only: [:show, :index, :create]
-  resources :recipes, only: [:create, :edit, :show] do
-      resources :recipe_ingredients, only: [:new, :create, :edit]
+  resources :sub_styles, only: [:index, :new, :create, :show]
+  resources :sub_styles, only: [:show] do
+    resources :recipes, only: [:index, :show]
   end
+  # resources :recipes, only: [:create, :edit, :show] do
+  #     resources :recipe_ingredients, only: [:new, :create, :edit]
+  # end
   get '*path' => redirect('/')
 end
