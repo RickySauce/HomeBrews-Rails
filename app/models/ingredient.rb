@@ -13,8 +13,8 @@ class Ingredient < ApplicationRecord
     Ingredient.where(type_name: "Yeast")
   end
 
-  def self.get_water
-    Ingredient.find_by(type_name: "Water")
+  def self.get_water_id
+    Ingredient.find_by(type_name: "Water").id
   end
 
 end
