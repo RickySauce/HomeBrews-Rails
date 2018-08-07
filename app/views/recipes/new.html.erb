@@ -1,15 +1,16 @@
 <h1>New Recipe</h1>
+<%=render partial: 'application/errors', locals: {object: @recipe}  %>
 <br><br>
 <%=form_for @recipe do |f| %>
-<%=f.hidden_field :user_id, value: @user.id%>
+<%=f.hidden_field :user_id, value: current_user.id%>
 <%=f.label :name %>:
 <%=f.text_field :name%><br>
 <%=f.label "Sub Style" %>:
 <%=f.collection_select :sub_style_id, SubStyle.all, :id, :name %><br>
 <%=f.label 'Boil Size'%>:
-<%=f.number_field :boil_size %> Gallons <br>
+<%=f.number_field :boil_size, step: 1 %> Gallon(s) <br>
 <%=f.label 'Batch Size' %>:
-<%=f.number_field :batch_size %> Gallons <br>
+<%=f.number_field :batch_size, step: 1 %> Gallon(s) <br>
 <%=f.label "Original Gravity" %>:
 <%=f.number_field :og, step: 0.001 %> <br>
 <%=f.label "Final Gravity" %>:

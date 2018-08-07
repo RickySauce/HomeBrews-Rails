@@ -8,7 +8,11 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.get_recipe_ingredients(params["recipe"]["recipe_ingredients_attributes"])
-    binding.pry
+    if @recipe.save
+      redirect_to user_recipe_path(current_user, @recipe)
+    else
+      render :new
+    end 
   end
 
   def show

@@ -5,7 +5,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
   accepts_nested_attributes_for :recipe_ingredients
   validates :name, presence: true, uniqueness: true
-  validates :boil_size, :batch_size, :og, :fg, :abv, :ibu, :user_id, presence: true
+  validates :boil_size, :batch_size, :og, :fg, :abv, :ibu, :user_id, :description, presence: true
 
   def get_recipe_ingredients(ingredients_hash)
     ingredients_hash.values.each do |ingredient_attribute|

@@ -1,3 +1,8 @@
 <h1><%= title(@user) %> </h1>
 
+<%if current_user = @user %>
+<%= form_tag new_user_recipe_path(current_user), :method => :get%>
+<%= submit_tag 'New Recipe' %>
+<%end%>
+
 <h2>Their Recipes</h2>

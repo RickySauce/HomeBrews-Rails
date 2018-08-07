@@ -2,8 +2,8 @@ class CreateRecipes < ActiveRecord::Migration[5.2]
   def change
     create_table :recipes do |t|
       t.string :name
-      t.string :boil_size
-      t.string :batch_size
+      t.integer :boil_size
+      t.integer :batch_size
       t.float :og
       t.float :fg
       t.float :abv

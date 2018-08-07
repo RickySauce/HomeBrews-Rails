@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 2018_08_04_134358) do
 
   create_table "recipes", force: :cascade do |t|
     t.string "name"
-    t.string "boil_size"
-    t.string "batch_size"
+    t.integer "boil_size"
+    t.integer "batch_size"
     t.float "og"
     t.float "fg"
     t.float "abv"

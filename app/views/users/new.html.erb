@@ -1,7 +1,7 @@
 <b><h2>New User</h2></b>
 
 <%= form_for @user do |f| %>
-<%=render partial: 'errors', locals: {user: @user}  %>
+<%=render partial: 'application/errors', locals: {object: @user}  %>
 <b> Username: </b>
 <%= f.text_field :username %>
 <br><br>
