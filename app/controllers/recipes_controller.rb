@@ -7,17 +7,26 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.get_recipe_ingredients(params["recipe"]["recipe_ingredients_attributes"])
     if @recipe.save
-      binding.pry
-      redirect_to user_recipe_path(current_user, @recipe)
+      @recipe.get_recipe_ingredients(params["recipe"]["recipe_ingredients_attributes"])
+      if @recipe.recipe_ingredients.count == 4
+        redirect_to user_recipe_path(current_user, @recipe)
+      else
+        @recipe.destroy
+        flash[:message] = "Must fill out all Ingredient fields!"
+        @recipe = Recipe.new(recipe_params)
+        render :new
+      end
     else
       render :new
     end
   end
 
   def show
-    binding.pry
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def index
   end
 
   def edit

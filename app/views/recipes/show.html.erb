@@ -1,0 +1,11 @@
+<h1><%=@recipe.name%></h1>
+
+<h3><%=@recipe.user.username%>'s Recipe</h3>
+<h3><%=@recipe.sub_style.name%></h3>
+
+<%information(@recipe).each do |item|%>
+<li><%=item%></li>
+<%end%>
+
+<h4>Intructions:</h4>
+<%=@recipe.description%>

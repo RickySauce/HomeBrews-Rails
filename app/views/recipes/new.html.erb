@@ -21,7 +21,7 @@
 <%=f.number_field :ibu %><br>
 <br><br>
 <%=f.label "Ingredients" %>:<br>
-  <%=fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |i| %>
+  <%=f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |i| %>
     <br><br>
     <%=i.label "Hops" %>:
     <%=i.collection_select :ingredient_id, Ingredient.get_type("Hops"), :id, :name %>
@@ -29,7 +29,7 @@
     <%=i.label :quantity %>:
     <%=i.number_field :quantity%>
     <%=i.label :measurement %>:
-    <%=i.select :measurement, options_for_select(["oz", "lb", "cup", "gallon"]) %>
+    <%=i.select :measurement, options_for_select(["oz"]) %>
   <%end%>
     <%=f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |i| %>
     <br><br>
@@ -49,7 +49,7 @@
     <%=i.label :quantity %>:
     <%=i.number_field :quantity%>
     <%=i.label :measurement %>:
-    <%=i.select :measurement, options_for_select(["oz", "lb", "cup", "gallon"]) %>
+    <%=i.select :measurement, options_for_select(["oz"]) %>
     <%end%>
     <%=f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |i| %>
     <br><br>
@@ -59,7 +59,7 @@
     <%=i.label :quantity %>:
     <%=i.number_field :quantity%>
     <%=i.label :measurement %>:
-    <%=i.select :measurement, options_for_select(["oz", "lb", "cup", "gallon"]) %>
+    <%=i.select :measurement, options_for_select(["gallon"]) %>
     <%end%>
 <br><br>
 <%=f.label "Instructions"%>: <br>
