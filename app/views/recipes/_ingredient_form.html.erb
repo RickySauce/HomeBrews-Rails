@@ -1,0 +1,10 @@
+<%=fields_for :recipe_ingredients, recipe.recipe_ingredients.build do |i| %>
+  <br><br>
+  <%=i.label name %>:
+  <%=i.collection_select :ingredient_id, Ingredient.get_type(name), :id, :name %>
+  <br><br>
+  <%=i.label :quantity %>:
+  <%=i.number_field :quantity%>
+  <%=i.label :measurement %>:
+  <%=i.select :measurement, options_for_select(["oz", "lb", "cup", "gallon"]) %>
+<%end%>

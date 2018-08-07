@@ -21,10 +21,10 @@
 <%=f.number_field :ibu %><br>
 <br><br>
 <%=f.label "Ingredients" %>:<br>
-  <%=f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |i| %>
+  <%=fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |i| %>
     <br><br>
     <%=i.label "Hops" %>:
-    <%=i.collection_select :ingredient_id, Ingredient.get_hops, :id, :name %>
+    <%=i.collection_select :ingredient_id, Ingredient.get_type("Hops"), :id, :name %>
     <br><br>
     <%=i.label :quantity %>:
     <%=i.number_field :quantity%>
@@ -34,7 +34,7 @@
     <%=f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |i| %>
     <br><br>
     <%=i.label "Yeast"%>:
-    <%=i.collection_select :ingredient_id, Ingredient.get_yeast, :id, :name %>
+    <%=i.collection_select :ingredient_id, Ingredient.get_type("Yeast"), :id, :name %>
     <br><br>
     <%=i.label :quantity %>:
     <%=i.number_field :quantity, :disabled => true%>
@@ -44,7 +44,7 @@
     <%=f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |i| %>
     <br><br>
     <%=i.label "Malt"%>:
-    <%=i.collection_select :ingredient_id, Ingredient.get_malts, :id, :name %>
+    <%=i.collection_select :ingredient_id, Ingredient.get_type("Malt"), :id, :name %>
     <br><br>
     <%=i.label :quantity %>:
     <%=i.number_field :quantity%>

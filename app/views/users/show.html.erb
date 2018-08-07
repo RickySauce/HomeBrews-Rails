@@ -6,3 +6,6 @@
 <%end%>
 
 <h2>Their Recipes</h2>
+<% @user.recipes.each do |recipe|%>
+<li><%=link_to "#{recipe.name}", user_recipe_path(@user, recipe)%> <%="- #{recipe.sub_style.name}"%></li>
+<%end%>

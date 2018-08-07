@@ -30,15 +30,8 @@ recipe model
     -custom search field ----- form_tag - search by hop profile ---- method fail safe- check for existence of name
 
 
-<br><br>
-<%=fields_for :ingredients, @recipe.ingredients.build do |ingredient_fields| %>
-  <%=ingredient_fields.label "Hops" %>:
-  <%=ingredient_fields.collection_check_boxes :id, Ingredient.get_hops, :id, :name%>
-  <br><br>
-  <%=ingredient_fields.label "Malts"%>:
-  <%=ingredient_fields.collection_check_boxes :id, Ingredient.get_malts, :id, :name %>
-  <br><br>
-  <%=ingredient_fields.label "Yeast"%>:
-  <%=ingredient_fields.collection_check_boxes :id, Ingredient.get_yeast, :id, :name %>
-  <br><br>
-<%end%>
+
+
+-- partials in recipe new form-
+  -display errors in fields in forms-
+    -scope class methods-

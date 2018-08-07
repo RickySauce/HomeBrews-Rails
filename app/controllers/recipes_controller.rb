@@ -9,10 +9,11 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.get_recipe_ingredients(params["recipe"]["recipe_ingredients_attributes"])
     if @recipe.save
+      binding.pry
       redirect_to user_recipe_path(current_user, @recipe)
     else
       render :new
-    end 
+    end
   end
 
   def show
