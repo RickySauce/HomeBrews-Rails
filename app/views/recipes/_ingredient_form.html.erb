@@ -1,10 +1,69 @@
-<%=fields_for :recipe_ingredients, recipe.recipe_ingredients.build do |i| %>
-  <br><br>
-  <%=i.label name %>:
-  <%=i.collection_select :ingredient_id, Ingredient.get_type(name), :id, :name %>
-  <br><br>
-  <%=i.label :quantity %>:
-  <%=i.number_field :quantity%>
-  <%=i.label :measurement %>:
-  <%=i.select :measurement, options_for_select(["oz", "lb", "cup", "gallon"]) %>
+<%=render partial: 'application/errors', locals: {object: @recipe}  %>
+<br><br>
+<%=form_for @recipe do |f| %>
+<%=f.hidden_field :user_id, value: current_user.id%>
+<%=f.label :name %>:
+<%=f.text_field :name%><br>
+<%=f.label "Sub Style" %>:
+<%=f.collection_select :sub_style_id, SubStyle.all, :id, :name %><br>
+<%=f.label 'Boil Size'%>:
+<%=f.number_field :boil_size, step: 1 %> Gallon(s) <br>
+<%=f.label 'Batch Size' %>:
+<%=f.number_field :batch_size, step: 1 %> Gallon(s) <br>
+<%=f.label "Original Gravity" %>:
+<%=f.number_field :og, step: 0.001 %> <br>
+<%=f.label "Final Gravity" %>:
+<%=f.number_field :fg, step: 0.001 %> <br>
+<%=f.label "ABV" %> %:
+<%=f.number_field :abv, step: 0.1%><br>
+<%=f.label "IBU" %>:
+<%=f.number_field :ibu %><br>
+<br><br>
+<%=f.label "Ingredients" %>:<br>
+  <%=f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |i| %>
+    <br><br>
+    <%=i.label "Hops" %>:
+    <%=i.collection_select :ingredient_id, Ingredient.get_type("Hops"), :id, :name %>
+    <br><br>
+    <%=i.label :quantity %>:
+    <%=i.number_field :quantity%>
+    <%=i.label :measurement %>:
+    <%=i.select :measurement, options_for_select(["oz"]) %>
+  <%end%>
+    <%=f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |i| %>
+    <br><br>
+    <%=i.label "Yeast"%>:
+    <%=i.collection_select :ingredient_id, Ingredient.get_type("Yeast"), :id, :name %>
+    <br><br>
+    <%=i.label :quantity %>:
+    <%=i.number_field :quantity, :disabled => true%>
+    <%=i.label :measurement %>:
+    <%=i.text_field :measurement, :disabled => true %>
+    <%end%>
+    <%=f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |i| %>
+    <br><br>
+    <%=i.label "Malt"%>:
+    <%=i.collection_select :ingredient_id, Ingredient.get_type("Malt"), :id, :name %>
+    <br><br>
+    <%=i.label :quantity %>:
+    <%=i.number_field :quantity%>
+    <%=i.label :measurement %>:
+    <%=i.select :measurement, options_for_select(["oz"]) %>
+    <%end%>
+    <%=f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |i| %>
+    <br><br>
+    <%=i.label "Water"%>:
+    <%=i.select :ingredient_id, :Water => Ingredient.get_water_id %>
+    <br><br>
+    <%=i.label :quantity %>:
+    <%=i.number_field :quantity%>
+    <%=i.label :measurement %>:
+    <%=i.select :measurement, options_for_select(["gallon"]) %>
+    <%end%>
+<br><br>
+<%=f.label "Instructions"%>: <br>
+<%=f.text_area :description, size: "100x20" %>
+<br><br>
+<%=f.submit %>
+
 <%end%>

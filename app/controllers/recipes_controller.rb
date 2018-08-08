@@ -12,9 +12,8 @@ class RecipesController < ApplicationController
       if @recipe.recipe_ingredients.count == 4
         redirect_to user_recipe_path(current_user, @recipe)
       else
-        @recipe.destroy
+        @recipe.recipe_ingredients.clear
         flash[:message] = "Must fill out all Ingredient fields!"
-        @recipe = Recipe.new(recipe_params)
         render :new
       end
     else
@@ -41,10 +40,19 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     if !current_user == @recipe.user
       redirect_to recipe_path(@recipe)
-    end 
+    end
   end
 
   def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.recipe_ingredients.clear
+    @recipe.get_recipe_ingredients(params["recipe"]["recipe_ingredients_attributes"])
+    if @recipe.update(recipe_params) && @recipe.recipe_ingredients.count == 4
+       redirect_to recipe_path(@recipe)
+    else
+      flash[:message] = "Must fill out all Ingredient fields!"
+      render :edit
+    end
   end
 
   def destroy
