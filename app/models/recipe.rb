@@ -19,7 +19,6 @@ class Recipe < ApplicationRecord
   end
 
   def self.get_recipes(user, sub_style)
-    binding.pry
     Recipe.where("sub_style_id = ? and user_id = ?", sub_style.id, user.id)
   end
 

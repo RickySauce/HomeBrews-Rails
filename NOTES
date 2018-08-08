@@ -38,3 +38,4 @@ recipe model
 ------------ scope class methods-
 - check_user in app controller or helper
 - improve new/edit recipe form recipe_ingredients_attributes , too verbose
+- user.sub_styles.uniq! ?

@@ -7,7 +7,4 @@ class User < ApplicationRecord
   validates :password, confirmation: true
   validates :password_confirmation, presence: true
 
-  def sub_styles=
-    self.sub_styles.uniq!
-  end
 end
