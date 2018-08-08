@@ -10,4 +10,4 @@
 <li><%=link_to "#{ownership(@user)} #{sub_style.name} Recipes", user_sub_style_path(@user, sub_style)%></li>
 <%end%>
 <h2><%=ownership(@user)%> Recipes</h2>
-<%=render partial: 'recipes/recipes', locals: {recipes: @recipes}  %>
+<%=render partial: 'recipes/recipes', locals: {object: @user}  %>

@@ -12,7 +12,7 @@ module SubStylesHelper
     if user
       Recipe.get_recipes(user, sub_style)
     else
-      substyle.recipes
+      sub_style.recipes
     end
   end
 

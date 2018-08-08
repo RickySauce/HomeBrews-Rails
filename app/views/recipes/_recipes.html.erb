@@ -1,3 +1,29 @@
-<% recipes.each do |recipe|%>
-<li><%=link_to "#{recipe.name}", recipe_path(recipe)%></li>
+<%if object.class == User %>
+
+<%object.recipes.each do |recipe|%>
+<li> <%=link_to "#{recipe.name}", user_recipe_path(object, recipe)%> </li>
+<%end%>
+
+<%elsif object.class == SubStyle%>
+
+<%substyle_recipes(user, object).each do |recipe|%>
+<li> <%=link_to "#{recipe.name}", sub_style_recipe_path(object, recipe)%>
+  <%if user.nil?%>
+    - by
+    <%=link_to "#{recipe.user.username}", user_path(recipe.user)%>
+  <%end%>
+</li>
+<%end%>
+
+<%else%>
+<%object.each do |recipe|%>
+<li><%=link_to "#{recipe.name}", recipe_path(recipe) %>
+-
+<%=link_to "#{recipe.sub_style.name}", sub_style_path(recipe.sub_style)%>
+- by
+<%=link_to "#{recipe.user.username}", user_path(recipe.user) %>
+</li>
+<%end%>
+
+
 <%end%>
