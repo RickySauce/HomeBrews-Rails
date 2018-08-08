@@ -1,13 +1,10 @@
 <h1><%=@recipe.name%></h1>
 
-<%if check_user(@recipe.user) %>
-<%= form_tag edit_user_recipe_path(current_user, @recipe), :method => :get%>
-<%= submit_tag 'Edit Recipe' %>
-<%end%>
-
 <%if check_user(@recipe.user)%>
-<%= form_tag "/users/#{current_user.id}/recipes/#{@recipe.id}", :method => :delete%>
+<%= form_tag recipe_path(@recipe), :method => :delete%>
 <%= submit_tag 'Delete Recipe' %>
+<br><br>
+<%=link_to 'Edit Recipe', edit_user_recipe_path(current_user,@recipe) %>
 <%end%>
 
 <h3><%=link_to @recipe.user.username, user_path(@recipe.user)%>'s Recipe</h3>
