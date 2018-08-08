@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :already_logged_in, only: [:new, :create] 
+  before_action :already_logged_in, only: [:new, :create]
 
   def new
     @user = User.new
@@ -17,6 +17,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @recipes = @user.recipes
+    redirect_to users_path if @user != current_user
+  end
+
+  def index
+    @users = User.all
   end
 
   private

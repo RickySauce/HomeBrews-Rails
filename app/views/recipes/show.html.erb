@@ -1,5 +1,10 @@
 <h1><%=@recipe.name%></h1>
 
+<%if check_user(@recipe.user) %>
+<%= form_tag new_user_recipe_path(current_user), :method => :get%>
+<%= submit_tag 'New Recipe' %>
+<%end%>
+
 <h3><%=link_to @recipe.user.username, user_path(@recipe.user)%>'s Recipe</h3>
 <h3><%=link_to @recipe.sub_style.name, sub_style_path(@recipe.sub_style) %></h3>
 

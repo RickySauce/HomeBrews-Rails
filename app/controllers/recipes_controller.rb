@@ -27,6 +27,14 @@ class RecipesController < ApplicationController
   end
 
   def index
+    binding.pry
+    if @user = params[:user_id]
+      @recipes = @user.recipes
+    elsif @sub_style = params[:sub_style_id]
+      @recipes = @sub_style.recipes
+    else
+      @recipes = Recipe.all
+    end
   end
 
   def edit
