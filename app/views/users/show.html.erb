@@ -5,5 +5,9 @@
 <%= submit_tag 'New Recipe' %>
 <%end%>
 
+<h2>Their Sub Styles</h2>
+<%@user.sub_styles.each do |sub_style|%>
+<li><%=link_to "Their #{sub_style.name} Recipes", user_sub_style_path(@user, sub_style)%></li>
+<%end%>
 <h2>Their Recipes</h2>
 <%=render partial: 'recipes/recipes', locals: {recipes: @recipes}  %>

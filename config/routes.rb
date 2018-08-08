@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users
   resources :users, only: [:show] do
     resources :recipes, only: [:show, :index, :edit, :new, :update, :create]
+    resources :sub_styles, only: [:show]
   end
   resources :recipes, only: [:show, :index, :create, :update]
   delete '/recipes/:id' => 'recipes#destroy'

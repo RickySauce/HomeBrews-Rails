@@ -32,8 +32,9 @@ recipe model
 
 
 
--- partials in recipe new form-
-  -display errors in fields in forms-
-    -scope class methods-
-  -check_user in app controller or helper
-  -- improve new/edit recipe form recipe_ingredients_attributes , too verbose
+-- ----omniauth
+- partials in recipe new form-
+- display errors in fields in forms-
+------------ scope class methods-
+- check_user in app controller or helper
+- improve new/edit recipe form recipe_ingredients_attributes , too verbose

@@ -1,0 +1,5 @@
+<h1>HomeBrews - Sub Styles</h1>
+
+<%@sub_styles.each do |sub_style|%>
+<li><%=link_to "#{sub_style.name}", sub_style_path(sub_style)%></li>
+<%end%>
