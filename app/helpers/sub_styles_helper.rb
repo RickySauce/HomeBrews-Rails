@@ -8,4 +8,12 @@ module SubStylesHelper
     end
   end
 
+  def substyle_recipes (user, sub_style)
+    if user
+      Recipe.get_recipes(user, sub_style)
+    else
+      substyle.recipes
+    end
+  end
+
 end

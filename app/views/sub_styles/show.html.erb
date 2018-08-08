@@ -1,1 +1,5 @@
 <h1><%=substyle_title(@user, @sub_style)%></h1>
+
+<%substyle_recipes(@user, @sub_style).each do |recipe|%>
+<li><%=link_to "#{recipe.name}", recipe_path(recipe)%></li>
+<%end%>
