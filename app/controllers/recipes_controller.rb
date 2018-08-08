@@ -26,11 +26,10 @@ class RecipesController < ApplicationController
   end
 
   def index
-    binding.pry
-    if @user = params[:user_id]
-      @recipes = @user.recipes
-    elsif @sub_style = params[:sub_style_id]
-      @recipes = @sub_style.recipes
+    if params[:user_id]
+      @recipes = User.find(params[:user_id]).recipes
+    elsif params[:sub_style_id]
+      @recipes = SubStyle.find(params[:sub_style_id]).recipes
     else
       @recipes = Recipe.all
     end
