@@ -38,12 +38,22 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    @recipe = Recipe.find(params[:id])
+    if !current_user == @recipe.user
+      redirect_to recipe_path(@recipe)
+    end 
   end
 
   def update
   end
 
-  def delete
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    if current_user == @recipe.user
+      @recipe.destroy
+      flash[:message] = "Recipe Successfully deleted"
+    end
+    redirect_to '/'
   end
 
   private
