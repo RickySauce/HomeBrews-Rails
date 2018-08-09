@@ -26,13 +26,7 @@ class RecipesController < ApplicationController
   end
 
   def index
-    if params[:user_id]
-      @recipes = User.find(params[:user_id]).recipes
-    elsif params[:sub_style_id]
-      @recipes = SubStyle.find(params[:sub_style_id]).recipes
-    else
-      @recipes = Recipe.all
-    end
+    @recipes = Recipe.all
   end
 
   def edit
