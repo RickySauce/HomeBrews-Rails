@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :sub_styles, only: [:show] do
     resources :recipes, only: [:show]
   end
+  get '/auth/:provider/callback', to: 'sessions#create'
   # resources :recipes, only: [:create, :edit, :show] do
   #     resources :recipe_ingredients, only: [:new, :create, :edit]
   # end

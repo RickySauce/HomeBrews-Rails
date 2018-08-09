@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    binding.pry
     @user = User.find_by(username: params["login"]["username"])
     if @user.nil?
       flash[:message] = "Username Not Found"
@@ -27,5 +28,9 @@ class SessionsController < ApplicationController
     flash[:message] = "Successfully Logged out!"
     redirect_to root_path
   end
+
+  def auth
+   request.env['omniauth.auth']
+ end
 
 end
