@@ -1,5 +1,5 @@
 class RecipeIngredient < ApplicationRecord
-  belongs_to :recipe
+  belongs_to :recipe #optional validation 
   belongs_to :ingredient
   validates :quantity, :measurement, presence: true,
     unless: Proc.new { |a| Ingredient.find(a.ingredient_id).type_name == "Yeast" }

@@ -7,4 +7,8 @@ class User < ApplicationRecord
   validates :password, confirmation: true
   validates :password_confirmation, presence: true
 
+  def self.users_with_most_recipes
+    
+  end
+
 end

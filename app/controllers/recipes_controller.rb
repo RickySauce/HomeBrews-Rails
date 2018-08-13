@@ -10,6 +10,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       @recipe.get_recipe_ingredients(params["recipe"]["recipe_ingredients_attributes"])
       if @recipe.recipe_ingredients.count == 4
+        flash[:message] = "Recipe Successfully Created"
         redirect_to user_recipe_path(current_user, @recipe)
       else
         @recipe.recipe_ingredients.clear
@@ -52,7 +53,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     if current_user == @recipe.user
       @recipe.destroy
-      flash[:message] = "Recipe Successfully deleted"
+      flash[:message] = "Recipe Successfully Deleted"
     end
     redirect_to '/'
   end

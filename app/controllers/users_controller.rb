@@ -23,6 +23,9 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def most_recipes
+  end
+
   private
 
   def user_params

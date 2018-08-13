@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
   resources :users
+  get '/mostrecipes' => 'users#most_recipes'
   resources :users, only: [:show] do
     resources :recipes, only: [:show, :edit, :new]
     resources :sub_styles, only: [:show]
