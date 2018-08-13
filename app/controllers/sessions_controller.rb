@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    binding.pry
     @user = User.find_by(username: params["login"]["username"])
     if @user.nil?
       flash[:message] = "Username Not Found"

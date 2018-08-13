@@ -7,7 +7,7 @@
 
 <h2><%=ownership(@user)%> Sub Styles</h2>
 <%@user.sub_styles.uniq.each do |sub_style|%>
-<li><%=link_to "#{ownership(@user)} #{sub_style.name} Recipes", user_sub_style_path(@user, sub_style)%></li>
+<li><%=link_to "#{ownership(@user)} #{sub_style.name}'s", user_sub_style_path(@user, sub_style)%></li>
 <%end%>
 <h2><%=ownership(@user)%> Recipes</h2>
 <%=render partial: 'recipes/recipes', locals: {object: @user}  %>
