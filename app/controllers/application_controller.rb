@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   before_action :current_user
   #before_action :require_logged_in, except: [:new, :create, :welcome]
 
-  def welcom
+  def welcome
+    binding.pry
   end
 
   def logged_in?
